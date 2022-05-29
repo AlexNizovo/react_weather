@@ -1,5 +1,5 @@
 import React from "react";
-import '../pages/weather/styless.css'
+import '..//../pages/weather/styless.css'
 
 
 function CurrentData () {

@@ -1,13 +1,12 @@
 import React, {useState} from "react";
-import CurrentData from "../../components/CurrentWeather";
-import DailliForecast from "../../components/DailliForecast";
-import TimeForecast from "../../components/TimeForecast";
-import './styless.css'
+import CurrentData from "../../components/currentWeather/CurrentWeather";
+import DailliForecast from "../../components/dailliForecast/DailliForecast";
+import TimeForecast from "../../components/timeForecast/TimeForecast";
+import '../weather/styless.css'
 
 
 
 function Weather () {
-
 
 
 
@@ -19,9 +18,12 @@ function Weather () {
             <div className="search">
                 <input placeholder="Search sity"></input>
             </div>
-
+           
             <CurrentData />
-            <DailliForecast />
+           
+                 <DailliForecast /> 
+            
+           
             <TimeForecast />
         </div>
     )
