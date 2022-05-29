@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import CurrentData from "../../components/currentWeather/CurrentWeather";
 import DailliForecast from "../../components/dailliForecast/DailliForecast";
-import TimeForecast from "../../components/timeForecast/TimeForecast";
+import TimeForecastContainer from "../../components/timeForecastContainer/TimeForecast";
 import '../weather/styless.css'
-
-
+import TimeWeatherMOCK from '../../MOCKS/timeForecast.json'
 
 function Weather () {
 
@@ -24,7 +23,7 @@ function Weather () {
                  <DailliForecast /> 
             
            
-            <TimeForecast />
+            <TimeForecastContainer data={TimeWeatherMOCK.list} />
         </div>
     )
 }
