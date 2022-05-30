@@ -8,7 +8,7 @@ function DayliForecastContainer (props) {
 
 
 const {day} = props;
-// console.log(data)
+console.log(day)
 
 
 const renderDayliForecastComponent = () => {
