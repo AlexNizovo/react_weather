@@ -83,15 +83,20 @@ input::-webkit-input-placeholder {
     padding: 0.5rem;
 }
 
-.icon {
+.icon img{
     width: 64px;
     height: 64px;
-    background: url('/src/images/icon/03d.png') no-repeat center;
+    
 }
 
 
 .container .temperature {
     font-size: xxx-large;
+    margin-top: -2rem;
+}
+.temperature .description {
+    font-size: large;
+    margin-left: 2rem;
 }
 
 .feels_like {
