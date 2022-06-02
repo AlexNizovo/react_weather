@@ -4,6 +4,7 @@ import DayliForecastContainer from "../../components/dayliForecast/DayliForecast
 import TimeWeatherMOCK from '../../MOCKS/timeForecast.json';
 import CurrentWeather from "../../components/currentWeather/CurrentWeather";
 import CurrentWeatherMOCK  from '../../MOCKS/currentWeather.json'
+import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import '../weather/styless.css'
 
 function Weather () {
@@ -31,7 +32,7 @@ function Weather () {
                 wind={current.wind.speed.toFixed(1)}
                 feels_like={current.main.feels_like.toFixed()}
             />
-            <DayliForecastContainer day={TimeWeatherMOCK.list}/> 
+            <DayliForecastContainer day={DayliForecastMOCK.list}/> 
 
             <TimeForecastContainer data={TimeWeatherMOCK.list} />
         </div>
