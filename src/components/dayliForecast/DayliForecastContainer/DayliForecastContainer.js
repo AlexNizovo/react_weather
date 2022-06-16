@@ -12,16 +12,22 @@ const {day} = props
 
 
 function averageTemperature () {
-  let average = []
   
+  let obj = {};
   for (let index = 0; index < day.length; index++) {
     let d = new Date(day[index].dt_txt)
-    average.push(d.getDate(day[index].dt_txt)) 
+    let keys = [day[index].dt_txt]
+    let values = [index]
+    obj[keys] = values
+    
   }
-  console.log(average)
+  console.log(obj)
 }
 
 averageTemperature()
+
+
+
 
 const renderDayliForecastComponent = () => {
 
