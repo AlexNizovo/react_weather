@@ -16,7 +16,7 @@ function averageTemperature () {
   let obj = {};
   for (let index = 0; index < day.length; index++) {
     let d = new Date(day[index].dt_txt)
-    let keys = [day[index].dt_txt]
+    let keys = [d.getDate(day[index].dt_txt)]
     let values = [index]
     obj[keys] = values
     
@@ -25,9 +25,6 @@ function averageTemperature () {
 }
 
 averageTemperature()
-
-
-
 
 const renderDayliForecastComponent = () => {
 
