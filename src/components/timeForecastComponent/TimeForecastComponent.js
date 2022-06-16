@@ -4,12 +4,12 @@ import {getWeatherIcon} from "../../images/icon";
 
 export function TimeForecastComponent(props) {
 
-	const { time, icon, temperature } = props;
+	const { time, icon, temperature, description } = props;
 	
 	return (
 		<div className="next_time">
 			<div className="time">
-				<p>{time.slice(10,16)}</p>
+				<p>{time.slice(11,16)}</p>
 			</div>
 			<div className="icon">
 				<img src={getWeatherIcon(icon)}/>
@@ -17,6 +17,9 @@ export function TimeForecastComponent(props) {
 			<div className="temperature">
 				<p>{temperature} ˚C</p>
 			</div>
+			<div>
+                <p className="description">{description}</p>
+            </div>
 		</div>
 	)
 } 

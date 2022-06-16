@@ -4,11 +4,19 @@ import '../../../pages/weather/styless.css'
 
 
 
+
 function DayliForecastContainer (props) {
 
 
 const {day} = props
 
+
+let date = new Date()
+let hours = date.getHours()
+console.log(hours)
+let periods = (8 - Math.floor(hours/3))
+console.log(periods)
+console.log(day[periods+5])
 
 const renderDayliForecastComponent = () => {
 
@@ -16,13 +24,14 @@ const renderDayliForecastComponent = () => {
       if (index > 5) return null
       return (
         <DayliForecastComponent 
-          key={item.dt_txt}
+          key={item.dt}
           data={item.dt_txt}
+          icon ={item.weather[0].icon}
           temperature={item.main.temp.toFixed()}
-          temperatureNight={item.sys=='n' && item.main.temp}
           humidity={item.main.humidity}
           wind={item.wind.speed.toFixed(1)}
           pressure={item.main.pressure}
+          description={item.weather[0].description}
           />
           
       )

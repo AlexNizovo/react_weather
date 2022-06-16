@@ -14,7 +14,13 @@ function TimeForecastContainer (props) {
     return data.map((item, index) => {
       if (index > 5) return null
       return (
-        <TimeForecastComponent key={item.dt_txt} time={item.dt_txt} icon={item.weather.icon} temperature={item.main.temp.toFixed()} />
+        <TimeForecastComponent 
+          key={item.dt_txt} 
+          time={item.dt_txt} 
+          icon={item.weather[0].icon} 
+          temperature={item.main.temp.toFixed()} 
+          description={item.weather[0].description}
+        />
       )
     })
   }

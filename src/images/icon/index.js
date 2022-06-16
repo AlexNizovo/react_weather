@@ -20,14 +20,19 @@ const weatherIcons = {
     '02d' : d02,
     '02n' : n02,
     '03d' : d03,
+    '03n' : d03,
     '04d' : d04,
+    '04n' : d04,
     '09d' : d09,
+    '09n' : d09,
     '10d' : d10,
     '10n' : n10,
     '11d' : d11,
     '11n' : n11,
     '13d' : d13,
-    '50d' : d50
+    '13n' : d13,
+    '50d' : d50,
+    '50n' : d50
 }
 
 export function getWeatherIcon(iconName) {
