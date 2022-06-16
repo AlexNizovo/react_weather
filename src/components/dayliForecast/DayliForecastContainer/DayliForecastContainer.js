@@ -12,12 +12,11 @@ const {day} = props
 
 
 function averageTemperature () {
-  let average = 0
+  let average = []
   for (let index = 0; index < day.length; index++) {
-    average += day[index].main.temp
+    average.push(day[index].dt_txt) 
   }
-  average = average / day.length
-  console.log(average.toFixed(2))
+  console.log(average)
 }
 
 averageTemperature()
