@@ -13,7 +13,7 @@ function Weather () {
     const current = CurrentWeatherMOCK
  
     const day=DayliForecastMOCK.list
-
+    
 
 
     return (

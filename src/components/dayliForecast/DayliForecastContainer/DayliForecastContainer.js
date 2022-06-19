@@ -11,25 +11,36 @@ function DayliForecastContainer (props) {
 const {day} = props
 
 
-function averageTemperature () {
+// function averageTemperature () {
   
-  let obj = {};
-  for (let index = 0; index < day.length; index++) {
-    let d = new Date(day[index].dt_txt)
-    let keys = [d.getDate(day[index].dt_txt)]
-    let values = [index]
-    obj[keys] = values
+//   let obj = {};
+//   for (let index = 0; index < day.length; index++) {
+//     let d = new Date(day[index].dt_txt)
+//     let keys = index
+//     let values = d.getHours(day[index].dt_txt)
+//     if(values == 12)
+//     obj[keys] = day[index]
     
-  }
-  console.log(obj)
-}
+//   }
+//   console.log(obj)
+// }
 
-averageTemperature()
+// averageTemperature()
+
+
+let days = []
+for (let index = 0; index < day.length; index++) {
+  let d = new Date(day[index].dt_txt)
+  if(d.getHours(day[index].dt_txt) == 12)
+  days.push(day[index])
+}
+console.log(days)
+
+
 
 const renderDayliForecastComponent = () => {
-
-    return day.map((item, index) => {
-      if (index > 5) return null
+  
+    return days.map(item => {
       return (
         <DayliForecastComponent 
           key={item.dt}

@@ -19,8 +19,8 @@ export function DayliForecastComponent (props) {
             <div className="temperature">
                 <p>{temperature}˚C</p> 
             </div>
-            <div>
-                <p className="description">{description}</p>
+            <div className="description">
+                <p>{description}</p>
             </div>
             <div className="pressure">
                 <p>Давление {(pressure/ 1.33322).toFixed()} мм</p>

@@ -46,6 +46,7 @@ input::-webkit-input-placeholder {
 }
 
 .conteiner_2 {
+    text-align: center;
     margin-left: 31rem;
     margin-top: -23.2rem;
     display: flex;
@@ -54,6 +55,7 @@ input::-webkit-input-placeholder {
 }
 
 .conteiner_3 {
+    text-align: center;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: space-between;
@@ -88,7 +90,6 @@ input::-webkit-input-placeholder {
 .icon img{
     width: 64px;
     height: 64px;
-    margin-left: 1.5rem;
 }
 
 
@@ -102,9 +103,10 @@ input::-webkit-input-placeholder {
 }
 
 .description {
+    text-align: center;
+    height: 2rem;
     font-size: small;
-    margin-left: 2rem;
-
+    margin-bottom: 1rem;
 }
 
 .feels_like {
