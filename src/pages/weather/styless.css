@@ -55,7 +55,6 @@ input::-webkit-input-placeholder {
 }
 
 .conteiner_3 {
-    text-align: center;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
     justify-content: space-between;
@@ -97,9 +96,9 @@ input::-webkit-input-placeholder {
     font-size: xxx-large;
     margin-top: -2rem;
 }
+
 .temperature .description {
     font-size: large;
-    
 }
 
 .description {
@@ -152,4 +151,5 @@ input::-webkit-input-placeholder {
 
 .conteiner_3 .description {
     margin-top: 1rem;
+    width: 70px;
 }

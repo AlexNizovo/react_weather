@@ -17,8 +17,8 @@ export function TimeForecastComponent(props) {
 			<div className="temperature">
 				<p>{temperature} ˚C</p>
 			</div>
-			<div>
-                <p className="description">{description}</p>
+			<div className="description">
+                <p >{description}</p>
             </div>
 		</div>
 	)
