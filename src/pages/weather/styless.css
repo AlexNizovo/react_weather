@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.App {
+    background: url('/src/images/zakat_nebo_oblaka_121865_3840x2400.jpeg') no-repeat center center/cover;
+    width: 100%;
+    height: 100vh;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+}
+
+.search input{
+    padding: .7rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255, 0.8);
+    background: rgba(255,255,255, 0.1);
+    color: #f8f8f8;
+    margin-top: 1rem;
+}
+
+input::-webkit-input-placeholder { 
+    color: rgb(255, 255, 255); 
+}
+
+.container, .conteiner_2 {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    height: 259px;
+    color: #f8f8f8;
+    padding: 1rem;
+}
+
+.container {
+    margin: 5rem;
+    margin-left: 3rem;
+    display: inline-grid;
+    width: 400px;
+}
+
+.conteiner_2 {
+    text-align: center;
+    margin-left: 31rem;
+    margin-top: -23.2rem;
+    display: flex;
+    justify-content: space-between;
+    width: 880px;
+}
+
+.conteiner_3 {
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: 15px;
+    height: 150px;
+    max-width: 900px;
+    padding: 1rem;
+    margin: 3rem;
+    color: #f8f8f8;
+}
+
+.city_name {
+    font-size: xx-large;
+    padding: 1rem;
+}
+
+.date {
+    font-size: smaller;
+    padding-left: 1rem;
+    margin-top: -15px;
+    margin-bottom: 20px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+
+.icon img{
+    width: 64px;
+    height: 64px;
+}
+
+
+.container .temperature {
+    font-size: xxx-large;
+    margin-top: -2rem;
+}
+
+.temperature .description {
+    font-size: large;
+}
+
+.description {
+    text-align: center;
+    height: 2rem;
+    font-size: small;
+    margin-bottom: 1rem;
+}
+
+.feels_like {
+    font-size: medium;
+    margin-top: .2rem;
+    margin-left: 1rem;
+}
+
+.pressure {
+    margin-top: -3rem;
+    margin-bottom: 1rem;
+}
+
+.humidity, .wind {
+    margin-bottom: 1rem;
+}
+
+.next_day {
+    width: 170px;
+    margin-left: 10px;
+}
+
+.next_day .date_2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.next_day .temperature {
+    font-size: x-large;
+    text-align: center;
+}
+
+.next_day .pressure, .humidity, .wind {
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.conteiner_3 .temperature {
+    margin-top: .5rem;
+}
+
+.conteiner_3 .description {
+    margin-top: 1rem;
+    width: 70px;
+}
