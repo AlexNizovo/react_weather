@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import TimeForecastContainer from "../../components/TimeForecastContainer/TimeForecastContainer";
 import DayliForecastContainer from "../../components/dayliForecast/DayliForecastContainer/DayliForecastContainer";
 import TimeWeatherMOCK from '../../MOCKS/timeForecast.json';
@@ -9,6 +9,13 @@ import '../weather/styless.css'
 import {useSelector, useDispatch} from "react-redux";
 import {CHANGE_CURRENT_LOCATION, settingReducer} from "../../redux/settingReducer";
 
+/*
+  Задача:
+  1. Создать редюсер для погоды
+  2. Создать все необходимые экшены для изменения данных в этом редюсере
+  3. Перенести все данные из моков в редюсер и делать это при загрузке приложения (с помощью useEffect)
+ */
+
 function Weather () {
 
 
@@ -17,6 +24,10 @@ function Weather () {
     const day=DayliForecastMOCK.list
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      // Вставь диспатч экшенов сюда
+    }, [])
 
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
 
