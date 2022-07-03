@@ -6,26 +6,42 @@ import CurrentWeather from "../../components/currentWeather/CurrentWeather";
 import CurrentWeatherMOCK  from '../../MOCKS/currentWeather.json'
 import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import '../weather/styless.css'
+import {useSelector, useDispatch} from "react-redux";
+import {CHANGE_CURRENT_LOCATION, settingReducer} from "../../redux/settingReducer";
 
 function Weather () {
 
 
     const current = CurrentWeatherMOCK
- 
+
     const day=DayliForecastMOCK.list
-    
+
+    const dispatch = useDispatch()
+
+    const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
 
 
     return (
         <div>
 
             <div className="search">
-                <input placeholder="Search sity"></input>
+                <input
+                  placeholder="Search sity"
+                  value={currentLocation}
+                  onChange={(event) => {
+                    dispatch({
+                      type: CHANGE_CURRENT_LOCATION,
+                      data: {
+                        currentLocation: event.target.value,
+                      }
+                    })
+                  }}
+                />
             </div>
 
-            <CurrentWeather key={current.name} 
-                name={current.name} 
-                icon={current.weather[0].icon} 
+            <CurrentWeather key={current.name}
+                name={current.name}
+                icon={current.weather[0].icon}
                 temperature={current.main.temp.toFixed()}
                 humidity={current.main.humidity}
                 pressure={(current.main.pressure / 1.33322).toFixed()}
@@ -33,7 +49,7 @@ function Weather () {
                 wind={current.wind.speed.toFixed(1)}
                 feels_like={current.main.feels_like.toFixed()}
             />
-            <DayliForecastContainer day={day}/> 
+            <DayliForecastContainer day={day}/>
 
             <TimeForecastContainer data={TimeWeatherMOCK.list} />
         </div>
@@ -43,4 +59,4 @@ function Weather () {
 
 
 
-export default Weather 
+export default Weather
