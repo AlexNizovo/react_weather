@@ -8,6 +8,7 @@ import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import '../weather/styless.css'
 import {useSelector, useDispatch} from "react-redux";
 import {CHANGE_CURRENT_LOCATION, settingReducer} from "../../redux/settingReducer";
+import { CHANGE_CURRENT_WEATHER, CHANGE_DAYLI_WEATHER, CHANGE_TIME_WEATHER, currentReducer, dayiliReducer, timeReducer, weatherReducer } from "../../redux/weatherReducer";
 
 /*
   Задача:
@@ -27,9 +28,28 @@ function Weather () {
 
     useEffect(() => {
       // Вставь диспатч экшенов сюда
+      dispatch({
+        type: CHANGE_CURRENT_WEATHER,
+        data: {
+          currentReducer: CurrentWeatherMOCK
+        }
+      })
+      dispatch({
+        type: CHANGE_DAYLI_WEATHER,
+        data: {
+          dayiliReducer: DayliForecastMOCK
+        }
+      })
+      dispatch({
+        type: CHANGE_TIME_WEATHER,
+          data: {
+            timeReducer: TimeWeatherMOCK
+          }
+      })
     }, [])
 
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
+    const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
 
 
     return (
