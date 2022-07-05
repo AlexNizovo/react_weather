@@ -51,7 +51,7 @@ function Weather () {
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
     const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
 
-
+      console.log(currentWeather.weather[0].icon)
     return (
         <div>
 

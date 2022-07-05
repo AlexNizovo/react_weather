@@ -23,17 +23,17 @@ const initialState = {
     switch (action.type) {
       case CHANGE_CURRENT_WEATHER: {
         return {
-          currentReducer: action.data.currentReducer
+          ...state, currentReducer: action.data.currentReducer
         }
       } 
       case CHANGE_TIME_WEATHER: {
         return {
-          timeReducer: action.data.timeReducer
+          ...state, timeReducer: action.data.timeReducer
         }
       }
       case CHANGE_DAYLI_WEATHER : {
         return {
-          dayliReducer: action.data.dayliReducer
+          ...state, dayliReducer: action.data.dayliReducer
         }
       }
     }
