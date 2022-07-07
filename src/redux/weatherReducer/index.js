@@ -1,15 +1,16 @@
 import CurrentWeatherMOCK from '../../MOCKS/currentWeather.json';
 import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import TimeForecastMOCK from '../../MOCKS/timeForecast.json'
+
 const initialState = {
     dayliReducer: {
-      day: DayliForecastMOCK
+      data: {}, isLoaded: false
     },
     timeReducer: {
-      time: TimeForecastMOCK
+      data: {}, isLoaded: false
     },
     currentReducer: {
-      current: CurrentWeatherMOCK
+      data: {}, isLoaded: false
     }
   }
   
@@ -23,17 +24,29 @@ const initialState = {
     switch (action.type) {
       case CHANGE_CURRENT_WEATHER: {
         return {
-          ...state, currentReducer: action.data.currentReducer
+          ...state,
+          currentReducer: {
+            data: action.data.currentReducer,
+            isLoaded: true
+          }
         }
       } 
       case CHANGE_TIME_WEATHER: {
         return {
-          ...state, timeReducer: action.data.timeReducer
+          ...state, 
+          timeReducer: {
+            data: action.data.timeReducer,
+            isLoaded: true
+          } 
         }
       }
       case CHANGE_DAYLI_WEATHER : {
         return {
-          ...state, dayliReducer: action.data.dayliReducer
+          ...state, 
+          dayliReducer: {
+            data: action.data.dayliReducer,
+            isLoaded: true
+          }
         }
       }
     }

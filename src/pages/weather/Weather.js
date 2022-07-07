@@ -20,10 +20,6 @@ import { CHANGE_CURRENT_WEATHER, CHANGE_DAYLI_WEATHER, CHANGE_TIME_WEATHER, curr
 function Weather () {
 
 
-    const current = CurrentWeatherMOCK
-
-    const day=DayliForecastMOCK.list
-
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -37,7 +33,7 @@ function Weather () {
       dispatch({
         type: CHANGE_DAYLI_WEATHER,
         data: {
-          dayiliReducer: DayliForecastMOCK
+          dayliReducer: DayliForecastMOCK
         }
       })
       dispatch({
@@ -50,8 +46,10 @@ function Weather () {
 
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
     const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
+    const dayWeather = useSelector((state) => state.weatherReducer.dayliReducer)
 
-      console.log(currentWeather.weather[0].icon)
+const timeWeather = useSelector((state) => state.weatherReducer.timeReducer)
+//       console.log(timeWeather)
     return (
         <div>
 
@@ -69,20 +67,27 @@ function Weather () {
                   }}
                 />
             </div>
-
-            <CurrentWeather key={current.name}
-                name={current.name}
-                icon={current.weather[0].icon}
-                temperature={current.main.temp.toFixed()}
-                humidity={current.main.humidity}
-                pressure={(current.main.pressure / 1.33322).toFixed()}
-                description={current.weather[0].description}
-                wind={current.wind.speed.toFixed(1)}
-                feels_like={current.main.feels_like.toFixed()}
-            />
-            <DayliForecastContainer day={day}/>
-
-            <TimeForecastContainer data={TimeWeatherMOCK.list} />
+                {
+                  currentWeather.isLoaded ? (
+                  <CurrentWeather key={currentWeather.data.name}
+                    name={currentWeather.data.name}
+                    icon={currentWeather.data.weather[0].icon}
+                    temperature={currentWeather.data.main.temp.toFixed()}
+                    humidity={currentWeather.data.main.humidity}
+                    pressure={(currentWeather.data.main.pressure / 1.33322).toFixed()}
+                    description={currentWeather.data.weather[0].description}
+                    wind={currentWeather.data.wind.speed.toFixed(1)}
+                    feels_like={currentWeather.data.main.feels_like.toFixed()}
+            />) : null
+                }
+            { 
+            dayWeather.isLoaded ? (
+              <DayliForecastContainer /> 
+            ) : null
+            }
+            { timeWeather.isLoaded ? (
+              <TimeForecastContainer  />) : null
+            } 
         </div>
     )
 }
