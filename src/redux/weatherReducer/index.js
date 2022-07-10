@@ -1,48 +1,73 @@
 import CurrentWeatherMOCK from '../../MOCKS/currentWeather.json';
 import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import TimeForecastMOCK from '../../MOCKS/timeForecast.json'
+import {
+  CHANGE_DAYLI_WEATHER,
+  CHANGE_TIME_WEATHER,
+  GET_CURRENT_WEATHER,
+  GET_CURRENT_WEATHER_FAIL,
+  GET_CURRENT_WEATHER_SUCCESS
+} from "./actions";
 
 const initialState = {
     dayliReducer: {
-      data: {}, isLoaded: false
+      data: {},
+      isLoaded: false,
+      haveError: false,
     },
     timeReducer: {
-      data: {}, isLoaded: false
+      data: {},
+      isLoaded: false,
+      haveError: false,
     },
     currentReducer: {
-      data: {}, isLoaded: false
+      data: {},
+      isLoaded: false,
+      haveError: false,
     }
   }
-  
-  
 
-  export const CHANGE_CURRENT_WEATHER = 'change_current_weather';
-  export const CHANGE_DAYLI_WEATHER = 'change_dayli_weather';
-  export const CHANGE_TIME_WEATHER = 'change_time_weather';
-  
   export const weatherReducer = (state = initialState, action) => {
     switch (action.type) {
-      case CHANGE_CURRENT_WEATHER: {
+      case GET_CURRENT_WEATHER: {
         return {
           ...state,
           currentReducer: {
-            data: action.data.currentReducer,
-            isLoaded: true
+            ...initialState.currentReducer,
           }
         }
-      } 
+      }
+      case GET_CURRENT_WEATHER_SUCCESS: {
+        return {
+          ...state,
+          currentReducer: {
+            data: action.data,
+            isLoaded: true,
+            haveError: false,
+          }
+        }
+      }
+      case GET_CURRENT_WEATHER_FAIL: {
+        return {
+          ...state,
+          currentReducer: {
+            isLoaded: false,
+            haveError: true,
+          }
+        }
+      }
       case CHANGE_TIME_WEATHER: {
         return {
-          ...state, 
+          ...state,
           timeReducer: {
             data: action.data.timeReducer,
             isLoaded: true
-          } 
+          }
         }
       }
       case CHANGE_DAYLI_WEATHER : {
         return {
-          ...state, 
+          ...state,
           dayliReducer: {
             data: action.data.dayliReducer,
             isLoaded: true

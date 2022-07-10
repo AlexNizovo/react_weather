@@ -8,13 +8,13 @@ import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
 import '../weather/styless.css'
 import {useSelector, useDispatch} from "react-redux";
 import {CHANGE_CURRENT_LOCATION, settingReducer} from "../../redux/settingReducer";
-import { CHANGE_CURRENT_WEATHER, CHANGE_DAYLI_WEATHER, CHANGE_TIME_WEATHER, currentReducer, dayiliReducer, timeReducer, weatherReducer } from "../../redux/weatherReducer";
+import { currentReducer, dayiliReducer, timeReducer, weatherReducer } from "../../redux/weatherReducer";
+import {CHANGE_DAYLI_WEATHER, CHANGE_TIME_WEATHER, getCurrentWeather} from "../../redux/weatherReducer/actions";
 
 /*
   Задача:
-  1. Создать редюсер для погоды
-  2. Создать все необходимые экшены для изменения данных в этом редюсере
-  3. Перенести все данные из моков в редюсер и делать это при загрузке приложения (с помощью useEffect)
+  1. Сделать реальный запрос в экшене на погоду
+  2. Сделать все тоже самое для daily и time weather
  */
 
 function Weather () {
@@ -23,13 +23,7 @@ function Weather () {
     const dispatch = useDispatch()
 
     useEffect(() => {
-      // Вставь диспатч экшенов сюда
-      dispatch({
-        type: CHANGE_CURRENT_WEATHER,
-        data: {
-          currentReducer: CurrentWeatherMOCK
-        }
-      })
+      dispatch(getCurrentWeather('Минск'))
       dispatch({
         type: CHANGE_DAYLI_WEATHER,
         data: {
@@ -47,6 +41,12 @@ function Weather () {
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
     const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
     const dayWeather = useSelector((state) => state.weatherReducer.dayliReducer)
+
+    useEffect(() => {
+      if (currentWeather.haveError) {
+        alert('Что-то пошло не так')
+      }
+    }, [currentWeather.haveError])
 
 const timeWeather = useSelector((state) => state.weatherReducer.timeReducer)
 //       console.log(timeWeather)
@@ -80,14 +80,14 @@ const timeWeather = useSelector((state) => state.weatherReducer.timeReducer)
                     feels_like={currentWeather.data.main.feels_like.toFixed()}
             />) : null
                 }
-            { 
+            {
             dayWeather.isLoaded ? (
-              <DayliForecastContainer /> 
+              <DayliForecastContainer />
             ) : null
             }
             { timeWeather.isLoaded ? (
               <TimeForecastContainer  />) : null
-            } 
+            }
         </div>
     )
 }
