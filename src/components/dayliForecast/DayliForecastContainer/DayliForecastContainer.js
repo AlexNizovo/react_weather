@@ -1,21 +1,22 @@
-import React from "react";
+import React  from "react";
+import { useSelector } from "react-redux";
 import { DayliForecastComponent } from "../DayliForecastComponent/DayliForecastComponent";
 import '../../../pages/weather/styless.css'
+import {weatherReducer, dayliReducer} from "../../../redux/weatherReducer"
 
 
 
 
-function DayliForecastContainer (props) {
+function DayliForecastContainer () {
 
 
-const {day} = props
-
+const day= useSelector((state) => state.weatherReducer.dayliReducer)
 
 let days = []
-for (let index = 0; index < day.length; index++) {
-  let d = new Date(day[index].dt_txt)
-  if(d.getHours(day[index].dt_txt) === 12)
-  days.push(day[index])
+for (let index = 0; index < day.data.list.length; index++) {
+  let d = new Date(day.data.list[index].dt_txt)
+  if(d.getHours(day.data.list[index].dt_txt) === 12)
+  days.push(day.data.list[index])
 }
 // console.log(days)
 
@@ -45,7 +46,9 @@ const renderDayliForecastComponent = () => {
 
     return (
         <div className="conteiner_2">
-          {renderDayliForecastComponent()}
+          {
+            renderDayliForecastComponent()
+          }
         </div>
     )
 }

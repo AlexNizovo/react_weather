@@ -1,17 +1,18 @@
 import React from "react";
 import '../../pages/weather/styless.css'
 import { TimeForecastComponent } from "../timeForecastComponent/TimeForecastComponent";
+import { useSelector } from "react-redux";
 
 
 
 
 
-function TimeForecastContainer (props) {
+function TimeForecastContainer () {
 
-  const { data } = props;
+  const data  = useSelector((state) => state.weatherReducer.timeReducer)
 
   const renderTimeForecastComponent = () => {
-    return data.map((item, index) => {
+    return data.data.list.map((item, index) => {
       if (index > 5) return null
       return (
         <TimeForecastComponent 
