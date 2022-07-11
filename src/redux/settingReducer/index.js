@@ -10,7 +10,7 @@ export const settingReducer = (state = initialState, action) => {
     case CHANGE_CURRENT_LOCATION: {
       return {
         ...state,
-        currentLocation: {...initialState.currentLocation,}
+        currentLocation: action.data.currentLocation,
       }
     }
   }
