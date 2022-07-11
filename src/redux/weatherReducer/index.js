@@ -1,16 +1,19 @@
-import CurrentWeatherMOCK from '../../MOCKS/currentWeather.json';
-import DayliForecastMOCK from '../../MOCKS/dayliForecast.json'
-import TimeForecastMOCK from '../../MOCKS/timeForecast.json'
+
 import {
-  CHANGE_DAYLI_WEATHER,
-  CHANGE_TIME_WEATHER,
+  GET_DAILY_WEATHER,
+  GET_DAILY_WEATHER_SUCCESS,
+  GET_DAILY_WEATHER_FAIL,
+  GET_TIME_WEATHER,
+  GET_TIME_WEATHER_SUCCESS,
+  GET_TIME_WEATHER_FAIL,
   GET_CURRENT_WEATHER,
   GET_CURRENT_WEATHER_FAIL,
-  GET_CURRENT_WEATHER_SUCCESS
+  GET_CURRENT_WEATHER_SUCCESS,
+  
 } from "./actions";
 
 const initialState = {
-    dayliReducer: {
+    dailyReducer: {
       data: {},
       isLoaded: false,
       haveError: false,
@@ -52,25 +55,61 @@ const initialState = {
           ...state,
           currentReducer: {
             isLoaded: false,
-            haveError: true,
+            haveError: false,
           }
         }
       }
-      case CHANGE_TIME_WEATHER: {
+      case GET_TIME_WEATHER: {
         return {
           ...state,
           timeReducer: {
-            data: action.data.timeReducer,
-            isLoaded: true
+            ...initialState.timeReducer,
           }
         }
       }
-      case CHANGE_DAYLI_WEATHER : {
+      case GET_TIME_WEATHER_SUCCESS: {
         return {
           ...state,
-          dayliReducer: {
-            data: action.data.dayliReducer,
-            isLoaded: true
+          timeReducer: {
+            data: action.data,
+            isLoaded: true,
+            haveError: false,
+          }
+        }
+      }
+      case GET_TIME_WEATHER_FAIL: {
+        return {
+          ...state,
+          timeReducer: {
+            isLoaded: false,
+            haveError: false,
+          }
+        }
+      }
+      case GET_DAILY_WEATHER : {
+        return {
+          ...state,
+          dailyReducer: {
+            ...initialState.dailyReducer,
+          }
+        }
+      }
+      case GET_DAILY_WEATHER_SUCCESS: {
+        return {
+          ...state,
+          dailyReducer: {
+            data: action.data,
+            isLoaded: true,
+            haveError: false,
+          }
+        }
+      }
+      case GET_DAILY_WEATHER_FAIL: {
+        return {
+          ...state,
+          dailyReducer: {
+            isLoaded: false,
+            haveError: false,
           }
         }
       }
