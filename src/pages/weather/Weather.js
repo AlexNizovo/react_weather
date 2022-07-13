@@ -69,8 +69,7 @@ function Weather () {
               <button 
                 type='submit' 
                 onClick={SubmitLocation} 
-                >Search
-              </button>
+                />
             </form> 
           </div>
           {
