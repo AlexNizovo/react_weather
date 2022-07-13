@@ -16,8 +16,15 @@ export const GET_DAILY_WEATHER_FAIL = 'get_daily_weather_fail'
 export const getCurrentWeather = (cityName) => (dispatch, getState) => {
     dispatch({ type: GET_CURRENT_WEATHER })
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&units=metric&wind=metric&lang=ru`, { method: 'GET' })
-      .then(res => res.json())
+      .then(res => {
+        console.log('curW ' + res.status)
+        if(res.status !== 200) {
+          throw new Error()
+        } 
+        return res.json()
+      })
       .then((data) => {
+        
         dispatch({ type: GET_CURRENT_WEATHER_SUCCESS, data: data})
       })
       .catch((err) => {
@@ -29,7 +36,13 @@ export const getCurrentWeather = (cityName) => (dispatch, getState) => {
 export const getTimeWeather = (cityName) => async (dispatch, getState) => {
   dispatch({ type: GET_TIME_WEATHER })
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&lang=ru&wind=metric&units=metric`, { method: 'GET' })
-      .then(res => res.json())
+      .then(res => {
+        console.log('timW ' + res.status)
+        if(res.status !== 200) {
+          throw new Error()
+        } 
+        return res.json()
+      })
       .then((data) => {
         dispatch({ type: GET_TIME_WEATHER_SUCCESS, data: data})
       })
@@ -40,9 +53,25 @@ export const getTimeWeather = (cityName) => async (dispatch, getState) => {
 export const getDailyWeather = (cityName) => async (dispatch, getState) => {
   dispatch({ type: GET_DAILY_WEATHER })
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&lang=ru&wind=metric&units=metric`, { method: 'GET' })
-      .then(res => res.json())
+      .then(res => {
+        console.log('dayW ' + res.status)
+        if(res.status !== 200) {
+          throw new Error()
+        } 
+        return res.json()
+      })
       .then((data) => {
-        dispatch({ type: GET_DAILY_WEATHER_SUCCESS, data: data})
+
+        let days = []
+
+        for (let index = 0; index < data.list.length; index++) {
+          const d = new Date(data.list[index].dt_txt)
+
+          if(d.getHours(data.list[index].dt_txt) === 12)
+          days.push(data.list[index])
+        }
+        dispatch({ type: GET_DAILY_WEATHER_SUCCESS, data: days})
+        return days
       })
       .catch((err) => {
         dispatch({ type: GET_DAILY_WEATHER_FAIL })

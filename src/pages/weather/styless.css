@@ -16,7 +16,7 @@
     justify-content: center;
 }
 
-.search input{
+.search input, button{
     padding: .7rem 1.5rem;
     font-size: 1.2rem;
     border-radius: 18px;
@@ -24,6 +24,10 @@
     background: rgba(255,255,255, 0.1);
     color: #f8f8f8;
     margin-top: 1rem;
+}
+
+button {
+    background: rgba(248, 152, 152, 0.5);
 }
 
 input::-webkit-input-placeholder { 

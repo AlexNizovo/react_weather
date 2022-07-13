@@ -55,7 +55,7 @@ const initialState = {
           ...state,
           currentReducer: {
             isLoaded: false,
-            haveError: false,
+            haveError: true,
           }
         }
       }
@@ -82,7 +82,7 @@ const initialState = {
           ...state,
           timeReducer: {
             isLoaded: false,
-            haveError: false,
+            haveError: true,
           }
         }
       }
@@ -109,7 +109,7 @@ const initialState = {
           ...state,
           dailyReducer: {
             isLoaded: false,
-            haveError: false,
+            haveError: true,
           }
         }
       }

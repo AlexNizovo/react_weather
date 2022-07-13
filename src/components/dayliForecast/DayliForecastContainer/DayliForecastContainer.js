@@ -8,18 +8,7 @@ import '../../../pages/weather/styless.css'
 
 function DayliForecastContainer () {
 
-
-const day = useSelector((state) => state.weatherReducer.dailyReducer)
-
-let days = []
-for (let index = 0; index < day.data.list.length; index++) {
-  const d = new Date(day.data.list[index].dt_txt)
-  if(d.getHours(day.data.list[index].dt_txt) === 12)
-  days.push(day.data.list[index])
-}
-// console.log(days)
-
-
+const days = useSelector((state) => state.weatherReducer.dailyReducer.data)
 
 const renderDayliForecastComponent = () => {
   
