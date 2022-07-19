@@ -1,4 +1,5 @@
 import React, {useEffect,useState} from "react";
+import Select from 'react-select'
 import TimeForecastContainer from "../../components/TimeForecastContainer/TimeForecastContainer";
 import DayliForecastContainer from "../../components/dayliForecast/DayliForecastContainer/DayliForecastContainer";
 import CurrentWeather from "../../components/currentWeather/CurrentWeather";
@@ -6,6 +7,7 @@ import '../weather/styless.css'
 import {useSelector, useDispatch} from "react-redux";
 import {CHANGE_CURRENT_LOCATION} from "../../redux/settingReducer";
 import { getCurrentWeather, getTimeWeather, getDailyWeather } from "../../redux/weatherReducer/actions";
+import {GET_CURRENT_LOCATION} from '../../redux/select/index'
 
 /*
   Задача:
@@ -14,22 +16,23 @@ import { getCurrentWeather, getTimeWeather, getDailyWeather } from "../../redux/
  */
 
 function Weather () {
-
+    const [selectedOption, setSelectedOption] = useState('');
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
     const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
     const dayWeather = useSelector((state) => state.weatherReducer.dailyReducer)
     const timeWeather = useSelector((state) => state.weatherReducer.timeReducer)
+    const searchCity = useSelector((state) => state.searchCity.getCity)
     
     useEffect(() => {
-      if (currentLocation === '') {
+      if (selectedOption === '') {
           return undefined
       } else {
-      dispatch(getCurrentWeather(currentLocation))
-      dispatch(getDailyWeather(currentLocation))
-      dispatch(getTimeWeather(currentLocation)) }
-    }, [currentLocation, dispatch])
+      dispatch(getCurrentWeather(selectedOption.value))
+      dispatch(getDailyWeather(selectedOption.value))
+      dispatch(getTimeWeather(selectedOption.value)) }
+    }, [selectedOption.value, dispatch])
 
 
 
@@ -39,27 +42,43 @@ function Weather () {
       }
     }, [currentWeather.haveError, dayWeather.haveError, timeWeather.haveError])
 
-    function SubmitHendler(event) {
-      event.preventDefault()
 
-      SubmitLocation(value)
+      console.log(searchCity)
+    
 
-      setValue('')
-    }
-      
-      function SubmitLocation(value) {
+    // function SubmitHendler(event) {
+    //   event.preventDefault()
+    //   setValue('')
+    //   }
+
+
+    function SubmitLocation(selectedOption) {
+        
         dispatch({
-          type: CHANGE_CURRENT_LOCATION,
+          type: GET_CURRENT_LOCATION,
           data: {
-            currentLocation: value,
+            searchCity: selectedOption,
           }
         }) 
-      }
-      // console.log(currentLocation)
+    }
+
+      console.log(selectedOption)
+      console.log(currentLocation)
     return (
         <div>
-          <div className="search">
-            <form onSubmit={SubmitHendler}>
+         
+          <div className="search"> 
+            <div className="select">
+                <Select
+                  defaultValue={selectedOption}
+                  onChange={setSelectedOption}
+                  options={searchCity}
+                  placeholder='Введите город или выберите из списка'
+                  // inputValue={value}
+                  // onInputChange={setValue}
+                />
+            </div>
+            {/* <form onSubmit={SubmitHendler}>
               <input 
                 type='text' 
                 placeholder="Search sity" 
@@ -70,7 +89,7 @@ function Weather () {
                 type='submit' 
                 onClick={SubmitLocation} 
                 />
-            </form> 
+            </form>  */}
           </div>
           {
             currentWeather.isLoaded ? (
@@ -104,3 +123,4 @@ function Weather () {
 
 
 export default Weather
+
