@@ -17,7 +17,6 @@ export const getCurrentWeather = (cityName) => (dispatch, getState) => {
     dispatch({ type: GET_CURRENT_WEATHER })
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&units=metric&wind=metric&lang=ru`, { method: 'GET' })
       .then(res => {
-        console.log('curW ' + res.status)
         if(res.status !== 200) {
           throw new Error()
         } 
@@ -37,7 +36,6 @@ export const getTimeWeather = (cityName) => async (dispatch, getState) => {
   dispatch({ type: GET_TIME_WEATHER })
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&lang=ru&wind=metric&units=metric`, { method: 'GET' })
       .then(res => {
-        console.log('timW ' + res.status)
         if(res.status !== 200) {
           throw new Error()
         } 
@@ -54,7 +52,6 @@ export const getDailyWeather = (cityName) => async (dispatch, getState) => {
   dispatch({ type: GET_DAILY_WEATHER })
   fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=0d50db68069481570334a5336c3918a2&lang=ru&wind=metric&units=metric`, { method: 'GET' })
       .then(res => {
-        console.log('dayW ' + res.status)
         if(res.status !== 200) {
           throw new Error()
         } 
