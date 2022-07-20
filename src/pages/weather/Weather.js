@@ -33,39 +33,18 @@ function Weather () {
         // alert('Что-то пошло не так')
       }
     }, [currentWeather.haveError, dayWeather.haveError, timeWeather.haveError])
-    function SubmitHendler(event) {
-      event.preventDefault()
-      SubmitLocation(value)
-      setValue('')
-    }
+    // function SubmitHendler(event) {
+    //   event.preventDefault()
+    //   SubmitLocation(value)
+    //   setValue('')
+    // }
       
-      function SubmitLocation(value) {
-        dispatch({
-          type: CHANGE_CURRENT_LOCATION,
-          data: {
-            currentLocation: value,
-          }
-        }) 
-      }
-      // console.log(currentLocation)
+     
     return (
         <div>
-          {/* <div className="search">
-            <form onSubmit={SubmitHendler}>
-              <input 
-                type='text' 
-                placeholder="Search sity" 
-                value={value} 
-                onChange={ event => setValue(event.target.value) } 
-                />
-              <button 
-                type='submit' 
-                onClick={SubmitLocation} 
-              />
-               
-            </form> 
-          </div> */}
-          <Select />
+          <Select 
+            currentLocation={currentLocation}
+          />
           {
             currentWeather.isLoaded ? (
               <CurrentWeather key={currentWeather.data.name}

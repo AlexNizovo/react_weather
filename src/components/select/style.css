@@ -38,10 +38,10 @@
     font-size: 1.2rem;
     max-height: 200px;
 }
- /* button {
+ button {
     display: none;
-} */
-.open {
+}
+/* .open {
     display: block;
     border-top: none;
     align-items: center;
@@ -58,6 +58,9 @@
     overflow-y: auto;
     font-size: 1.2rem;
     max-height: 200px;
+} */
+.select:hover .select_down{
+    display: block;
 }
 ul {
     margin-left: -15px;

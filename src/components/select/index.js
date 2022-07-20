@@ -1,20 +1,42 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { CHANGE_CURRENT_LOCATION } from "../../redux/settingReducer";
 import options from "./options";
 import './style.css'
 
-function Select () {
+function Select (props) {
     const [value, setValue] = useState('')
+    const dispatch = useDispatch()
 
-    function SubmitHendler(event) {
+    function SubmitHendler(event,downValue) {
         event.preventDefault()
-        
+        // SubmitLocation(downValue, value)
         setValue('')
       }
 
 
       
- function SubmitLocation (value) {
-  
+ function SubmitLocation (downValue,value) {
+    
+   if(downValue === undefined){
+        dispatch({
+                type: CHANGE_CURRENT_LOCATION,
+                data: {
+                currentLocation: value,
+                }
+            }) 
+   } else {
+        dispatch({
+            type: CHANGE_CURRENT_LOCATION,
+            data: {
+            currentLocation: downValue,
+            }
+        }) 
+    
+   }
+//  else {
+//     console.log("Некоректный ввод");
+//    }
  }
 
  const filterOptions = () => {
@@ -28,10 +50,10 @@ function Select () {
         )
   }
 
-function changeInputValue(downValue) {
-   console.log(downValue)
+function changeInputValue(downValue, value) {
+   SubmitLocation(downValue, value)
 }
-console.log(changeInputValue())
+// console.log(changeInputValue())
 
 
 
@@ -46,13 +68,16 @@ console.log(changeInputValue())
                             value={value}
                             onChange={ event =>setValue(event.target.value)} 
                         />
-                    {/* <button 
+                    <button 
                         type='submit' 
-                        onClick={SubmitLocation} 
-                        /> */}
+                        onClick={SubmitLocation(value)} 
+                        />
                     </form> 
                 </div>
-                <div  className={value === '' ? 'select_down' : 'open'}>
+                <div  
+                // className={value === '' ? 'select_down' : 'open'}
+                className="select_down"
+                >
                     <ul>
                         {
                          filterOptions()
