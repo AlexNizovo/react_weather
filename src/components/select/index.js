@@ -5,54 +5,51 @@ import options from "./options";
 import './style.css'
 
 function Select (props) {
+
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
 
-    function SubmitHendler(event,downValue) {
+    function SubmitHendler(event) {
         event.preventDefault()
-        // SubmitLocation(downValue, value)
         setValue('')
       }
 
 
       
- function SubmitLocation (downValue,value) {
-    
-   if(downValue === undefined){
-        dispatch({
+    function SubmitLocation (downValue,value) {
+        
+        if(downValue === undefined){
+            dispatch({
+                    type: CHANGE_CURRENT_LOCATION,
+                    data: {
+                    currentLocation: value,
+                    }
+                }) 
+        } else {
+            dispatch({
                 type: CHANGE_CURRENT_LOCATION,
                 data: {
-                currentLocation: value,
+                currentLocation: downValue,
                 }
             }) 
-   } else {
-        dispatch({
-            type: CHANGE_CURRENT_LOCATION,
-            data: {
-            currentLocation: downValue,
-            }
-        }) 
-    
-   }
-//  else {
-//     console.log("Некоректный ввод");
-//    }
- }
+        }
+    }
 
- const filterOptions = () => {
-    return options.filter(
-        e => e.toLowerCase().indexOf(value.toLowerCase()) !== -1 ).map(
-            item => { 
-                return <li 
-                    key={item} 
-                    onClick={() => changeInputValue(item)}
-                > {item}</li> }
-        )
-  }
+    const filterOptions = () => {
+        return options.filter(
+            e => e.toLowerCase().indexOf(value.toLowerCase()) !== -1 
+        ).map(  item => {
+                    return <li 
+                        key={item} 
+                        onClick={() => changeInputValue(item)}
+                    >{item}</li>
+                }
+            )   
+    }
 
-function changeInputValue(downValue, value) {
-   SubmitLocation(downValue, value)
-}
+    function changeInputValue(downValue, value) {
+        SubmitLocation(downValue, value)
+    }
 // console.log(changeInputValue())
 
 
@@ -74,10 +71,7 @@ function changeInputValue(downValue, value) {
                         />
                     </form> 
                 </div>
-                <div  
-                // className={value === '' ? 'select_down' : 'open'}
-                className="select_down"
-                >
+                <div  className={value !== '' ? 'open' : 'select_down'} >
                     <ul>
                         {
                          filterOptions()
@@ -85,7 +79,6 @@ function changeInputValue(downValue, value) {
                     </ul>
                 </div>    
             </div>
-            
         </div>
     )
 }

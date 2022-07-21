@@ -6,7 +6,6 @@
 }
 .select {
     position: relative;
-    justify-content: center;
     margin-top: 1.5rem;
     width: 100%;
 }
@@ -19,7 +18,7 @@
     background: rgba(255,255,255, 0.1);
     color: #f8f8f8;
     width: 386px;
-    cursor: pointer;
+    cursor: auto;
 }
 .select_down {
     display: none;
@@ -30,7 +29,6 @@
     border: 1px solid rgba(255,255,255, 0.8);
     background-color: rgba(255, 255, 255, 0.271);
     margin-left: 3px;
-    padding-top: 5px;
     padding-left: 13px;
     color: rgba(0, 0, 0, 0.91);
     max-height: 200px;
@@ -41,9 +39,8 @@
  button {
     display: none;
 }
-/* .open {
+.open {
     display: block;
-    border-top: none;
     align-items: center;
     width: 95%;
     position: absolute;
@@ -51,17 +48,17 @@
     border: 1px solid rgba(255,255,255, 0.8);
     background-color: rgba(255, 255, 255, 0.271);
     margin-left: 3px;
-    padding-top: 5px;
     padding-left: 13px;
     color: rgba(0, 0, 0, 0.91);
     max-height: 200px;
     overflow-y: auto;
     font-size: 1.2rem;
     max-height: 200px;
-} */
-.select:hover .select_down{
+}
+.wrap:hover .select_down{
     display: block;
 }
+
 ul {
     margin-left: -15px;
     list-style: none;

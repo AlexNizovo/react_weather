@@ -1,10 +1,9 @@
-import React, {useEffect,useState} from "react";
+import React, {useEffect} from "react";
 import TimeForecastContainer from "../../components/TimeForecastContainer/TimeForecastContainer";
 import DayliForecastContainer from "../../components/dayliForecast/DayliForecastContainer/DayliForecastContainer";
 import CurrentWeather from "../../components/currentWeather/CurrentWeather";
 import '../weather/styless.css'
 import {useSelector, useDispatch} from "react-redux";
-import {CHANGE_CURRENT_LOCATION} from "../../redux/settingReducer";
 import { getCurrentWeather, getTimeWeather, getDailyWeather } from "../../redux/weatherReducer/actions";
 import Select from "../../components/select/index";
 /*
@@ -13,7 +12,6 @@ import Select from "../../components/select/index";
   2. Сделать все тоже самое для daily и time weather
  */
 function Weather () {
-    const [value, setValue] = useState('')
     const dispatch = useDispatch()
     const currentLocation = useSelector((state) => state.settingReducer.currentLocation)
     const currentWeather = useSelector((state) => state.weatherReducer.currentReducer)
@@ -33,11 +31,7 @@ function Weather () {
         // alert('Что-то пошло не так')
       }
     }, [currentWeather.haveError, dayWeather.haveError, timeWeather.haveError])
-    // function SubmitHendler(event) {
-    //   event.preventDefault()
-    //   SubmitLocation(value)
-    //   setValue('')
-    // }
+
       
      
     return (
