@@ -38,7 +38,7 @@ value = ''
     const filterOptions = () => {
         const filtrred = options.filter(
             e => e.toLowerCase().indexOf(value.toLowerCase()) !== -1 )
-        if( filtrred != 0) {
+        if( filtrred !== 0) {
             return filtrred.map(  item => {
                     return <li 
                         key={item} 
