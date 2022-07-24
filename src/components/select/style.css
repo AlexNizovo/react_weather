@@ -55,9 +55,7 @@
     font-size: 1.2rem;
     max-height: 200px;
 }
-.wrap:hover .select_down{
-    display: block;
-}
+
 
 ul {
     margin-left: -15px;

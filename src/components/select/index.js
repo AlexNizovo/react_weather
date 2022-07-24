@@ -17,7 +17,7 @@ function Select (props) {
 
       
     function SubmitLocation (downValue,value) {
-        
+value = ''
         if(downValue === undefined){
             dispatch({
                     type: CHANGE_CURRENT_LOCATION,
@@ -36,16 +36,21 @@ function Select (props) {
     }
 
     const filterOptions = () => {
-        return options.filter(
-            e => e.toLowerCase().indexOf(value.toLowerCase()) !== -1 
-        ).map(  item => {
+        const filtrred = options.filter(
+            e => e.toLowerCase().indexOf(value.toLowerCase()) !== -1 )
+        if( filtrred != 0) {
+            return filtrred.map(  item => {
                     return <li 
                         key={item} 
                         onClick={() => changeInputValue(item)}
                     >{item}</li>
                 }
-            )   
-    }
+            ) 
+        } else {
+             return <li>Список пуст</li>
+                }
+        }
+
 
     function changeInputValue(downValue, value) {
         SubmitLocation(downValue, value)
@@ -67,7 +72,7 @@ function Select (props) {
                         />
                     <button 
                         type='submit' 
-                        onClick={SubmitLocation(value)} 
+                        onClick={ () => SubmitLocation(value)} 
                         />
                     </form> 
                 </div>
