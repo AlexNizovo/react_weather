@@ -13,7 +13,7 @@ export function DayliForecastComponent (props) {
     return (
         <div className="next_day">
             <div className="date_2">
-                <p>{data.slice(0,10)}</p>
+                <p>{data}</p>
             </div>
             <div className="icon"><img src={getWeatherIcon(icon)}/></div>
             <div className="temperature">
